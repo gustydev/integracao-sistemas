@@ -1,5 +1,5 @@
 require('dotenv').config();
-
+const codes = require('./data/weatherCodes')
 const express = require('express');
 
 const app = express();
@@ -13,23 +13,31 @@ app.get('/', (req, res) => {
 });
 
 app.get(`/api/clima/:cep`, async(req, res) => {
-  const fetchDados = await fetch(`https://cep.awesomeapi.com.br/json/${req.params.cep}`);
-  const dados = await fetchDados.json();
+  const fetchCep = await fetch(`https://cep.awesomeapi.com.br/json/${req.params.cep}`);
+  const dadosCep = await fetchCep.json();
 
-  const [latitude, longitude] = [dados.lat, dados.lng]
+  const [latitude, longitude] = [dadosCep.lat, dadosCep.lng]
 
-  const fetchMeteo = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weather_code,precipitation,relative_humidity_2m,apparent_temperature,rain,showers,surface_pressure,pressure_msl,cloud_cover`)
-  const clima = await fetchMeteo.json();
+  const fetchClima = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weather_code,precipitation,relative_humidity_2m,apparent_temperature,rain,showers,surface_pressure,pressure_msl,cloud_cover`)
+  const dadosClima = await fetchClima.json();
 
-  console.log(clima)
+  console.log(dadosClima)
 
-  const local = {
-    cep: dados.cep,
-    endereço: dados.address,
-    cidade: `${dados.city}, ${dados.state}`,
+  const dados = {
+    endereço: {
+      cep: dadosCep.cep,
+      endereço: dadosCep.address,
+      cidade: `${dadosCep.city}, ${dadosCep.state}`,
+      bairro: dadosCep.district
+    },
+    clima_atual: {
+      status: codes[dadosClima.current.weather_code],
+      temperatura: `${dadosClima.current.temperature_2m} ºC`,
+      sensacao_termica: `${dadosClima.current.apparent_temperature} ºC`
+    }
   }
 
-  res.json(local);
+  res.json(dados);
 })
 
 app.listen(PORT, () => {
