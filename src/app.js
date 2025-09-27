@@ -26,8 +26,6 @@ app.get(`/api/clima/hoje/:cep`, async(req, res) => {
     const fetchClima = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weather_code,precipitation,relative_humidity_2m,apparent_temperature,rain,showers,surface_pressure,pressure_msl,cloud_cover`)
     const dadosClima = await fetchClima.json();
 
-    console.log(dadosClima)
-
     const dados = {
       endereço: {
         cep: dadosCep.cep,
@@ -97,3 +95,5 @@ app.get(`/api/clima/previsao/:cep`, async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
+
+module.exports = app;
