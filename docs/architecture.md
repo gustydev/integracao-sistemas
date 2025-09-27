@@ -16,11 +16,18 @@ A solução foi desenvolvida utilizando o padrão RESTful, com backend em Node.j
 ### Diagrama de Arquitetura
 
 ```mermaid
-graph TD
-    Usuario -->|Requisição CEP| API_Clima_CEP
-    API_Clima_CEP -->|Consulta CEP| AwesomeAPI
-    API_Clima_CEP -->|Consulta Clima| OpenMeteo
-    API_Clima_CEP -->|Resposta JSON| Usuario
+sequenceDiagram
+    participant Cliente
+    participant API Clima por CEP (Nosso App)
+    participant AwesomeAPI (CEP)
+    participant Open-Meteo (Clima)
+
+    Cliente->>+API Clima por CEP (Nosso App): GET /api/clima/hoje/{cep}
+    API Clima por CEP (Nosso App)->>+AwesomeAPI (CEP): GET /json/{cep}
+    AwesomeAPI (CEP)-->>-API Clima por CEP (Nosso App): Resposta JSON com Endereço e Coordenadas
+    API Clima por CEP (Nosso App)->>+Open-Meteo (Clima): GET /forecast?latitude={lat}&longitude={lng}...
+    Open-Meteo (Clima)-->>-API Clima por CEP (Nosso App): Resposta JSON com Dados do Clima
+    API Clima por CEP (Nosso App)-->>-Cliente: Resposta JSON com dados combinados de Endereço + Clima
 ```
 
 ### Fluxo resumido
