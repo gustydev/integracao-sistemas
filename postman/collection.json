@@ -1,0 +1,85 @@
+{
+	"info": {
+		"_postman_id": "42ff22fd-9ec2-4524-825c-57b1f7526ce8",
+		"name": "API Clima-CEP",
+		"description": "Coleção de testes para projeto de integração de sistemas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37854966"
+	},
+	"item": [
+		{
+			"name": "Clima de hoje",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/clima/hoje/{{cep}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"clima",
+						"hoje",
+						"{{cep}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Previsão 5 dias",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/clima/previsao/{{cep}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"clima",
+						"previsao",
+						"{{cep}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000"
+		},
+		{
+			"key": "cep",
+			"value": "60170001"
+		}
+	]
+}
