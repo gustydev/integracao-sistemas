@@ -122,3 +122,13 @@ sequenceDiagram
 ## Observações
 - O projeto utiliza variáveis de ambiente para configuração (ver `.env`).
 - Em caso de erro nas APIs externas, o sistema retorna mensagem de erro e status apropriado.
+
+## Equipe e Contribuições
+| Membro          | Matrícula | Papel                        | Principais Contribuições                                                                                                  |
+| --------------- | ----------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| **Gustavo Almeida** | 2323769 | Desenvolvedor Principal      | Implementação do código-fonte da API em Node.js/Express, lógica de integração com serviços externos e endpoints.          |
+| **Lucas Santos** | 2326221 | Gerente de Projeto           | Levantamento de requisitos, planejamento das entregas e organização geral do projeto para garantir o atendimento dos objetivos. |
+| **Diego Araújo** | 2326157 | Arquiteto de Solução         | Desenho da arquitetura da aplicação, criação do diagrama de sequência e elaboração da documentação técnica (`architecture.md`). |
+| **Heron Souza** | 2326347 | Engenheiro de Testes (QA)    | Elaboração dos cenários de teste, criação dos testes unitários com Jest e Supertest, e validação funcional dos endpoints.   |
+| **Pedro Costa** | 2323848 | Especialista em API          | Definição dos contratos dos endpoints (rotas, parâmetros, formatos de resposta) e criação da coleção no Postman.             |
+| **Francisco Nascimento** | 2315073 | DevOps                       | Configuração do ambiente de desenvolvimento, gerenciamento de dependências (`package.json`) e estruturação do repositório.    |
